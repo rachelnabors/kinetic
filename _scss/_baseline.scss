@@ -1,0 +1,122 @@
+$teal: #35bbbb;
+$turquoise: #0a8b90;
+$green: #406b57;
+$black: #16151b;
+$orange: #f56a48;
+$gold: #f5b54d;
+
+$colorCore: $teal;
+$colorBg: darken($colorCore, 10%);
+$colorFont: lighten($colorCore, 30%);
+
+// Vertical Rhythm
+$browser-default-font-size: 16px;
+$relative-font-sizing: true;
+$rhythm-unit: "rem";
+$base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-weight: 400;
+$base-font-color: $colorFont;
+
+// Base Font Sizes
+$base-line-height: 30px;
+
+// Modular Scale
+$ms-base: 10px;
+$ms-ratio: 1.5;
+
+$tiny-font-size: $ms-base;
+$tiny-font-leading: 1/3;
+$small-font-size: $ms-base * $ms-ratio;
+$small-font-leading: 2/3;
+$base-font-size: $ms-base * $ms-ratio * $ms-ratio;
+$base-font-leading: 1;
+$medium-font-size: $ms-base * $ms-ratio * $ms-ratio * $ms-ratio;
+$medium-font-leading: 1;
+$large-font-size: $ms-base * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio;
+$large-font-leading: 4/3;
+$xlarge-font-size: $ms-base * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio;
+$xlarge-font-leading: 4/3;
+$xxlarge-font-size: $ms-base * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio;
+$xxlarge-font-leading: 5/3;
+$xxxlarge-font-size: $ms-base * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio * $ms-ratio;
+$xxxlarge-font-leading: 6/3;
+
+@include establish-baseline;
+
+@mixin typeSize($size) {
+ @if $size == "tiny" {
+  @include adjust-font-size-to($tiny-font-size, $tiny-font-leading);
+ }
+ @if $size == "small" {
+  @include adjust-font-size-to($small-font-size, $small-font-leading);
+ }
+ @if $size == "base" {
+  @include adjust-font-size-to($base-font-size, $base-font-leading);
+ }
+ @if $size == "medium" {
+  @include adjust-font-size-to($medium-font-size, $medium-font-leading);
+ }
+ @if $size == "large" {
+  @include adjust-font-size-to($large-font-size, $large-font-leading);
+ }
+ @if $size == "xlarge" {
+  @include adjust-font-size-to($xlarge-font-size, $xlarge-font-leading);
+ }
+ @if $size == "xxlarge" {
+  @include adjust-font-size-to($xxlarge-font-size, $xxlarge-font-leading);
+ }
+ @if $size == "xxxlarge" {
+  @include adjust-font-size-to($xxxlarge-font-size, $xxxlarge-font-leading);
+ }
+}
+
+// Type size variants
+%t-tiny {
+ @include typeSize(tiny);
+}
+%t-small {
+ @include typeSize(small);
+}
+%t-base {
+ @include typeSize(base);
+}
+%t-medium {
+ @include typeSize(medium);
+}
+%t-large {
+ @include typeSize(large);
+}
+%t-xlarge {
+ @include typeSize(xlarge);
+}
+%t-xxlarge {
+ @include typeSize(xxlarge);
+}
+%t-xxxlarge {
+ @include typeSize(xxxlarge);
+}
+
+@mixin buttonator($button-color: $orange, $alt-color: $gold, $border-radius: .5em) {
+  background: $button-color;
+  @include border-radius($border-radius);
+  color: adjust-lightness($button-color, 50%) !important;
+  cursor: pointer;
+  border: 1px adjust-lightness($button-color, -10%) solid;
+  @include text-shadow((adjust-lightness($button-color, -10%)) 0 1px 0);
+  text-decoration: none;
+  padding: $border-radius $border-radius*4;
+  transition:
+    transform .25s,
+    background .25s,
+    color .25s,
+    text-shadow .25s,
+    border-color .25s;
+  display: inline-block;
+  &:hover, &:active, &:focus {
+    transform: translate(2px, 2px);
+    background: $alt-color;
+    color: adjust-lightness($alt-color, 50%) !important;
+    @include text-shadow((adjust-lightness($alt-color, -10%)) 0 1px 0);
+    border-color: adjust-lightness($alt-color, -10%);
+  }
+}

@@ -1,0 +1,91 @@
+@import "compass";
+@import "_baseline.scss";
+
+body {
+    background: $colorBg;
+    color: $colorFont;
+    font-family: sans-serif;
+    text-align: center;
+}
+
+img, input, p {
+    display: block;
+    margin: 0 auto;
+    width: 80%;
+    max-width: 300px;
+}
+
+img {
+    @include margin-leader();
+}
+
+p {
+    @include margin-leader();
+    max-width: 30em;
+}
+
+form {
+    @include margin-leader();
+}
+
+input {
+    @extend %t-base;
+    box-sizing: border-box;
+    @include margin-trailer(1/3);
+    transition: background 300ms, color 300ms;
+}
+
+input[type=submit] {
+    @include buttonator();
+}
+
+input[type=email] {
+    background: $colorCore;
+    border: 0;
+    color: $black;
+    padding: .5em;
+    &:focus {
+        background: lighten($colorCore, 10%);
+    }
+}
+
+a:link {
+    color: darken($green, 30%);
+    display: inline-block;
+    text-decoration: none;
+    padding: .25em;
+    transition: background 300ms, color 300ms;
+}
+
+a:visited {
+    color: $black;
+}
+
+a:hover, a:active, a:focus {
+    background: $black;
+    color: $gold;
+}
+
+input::placeholder {
+    color: darken($colorCore, 20%);
+}
+
+::selection {
+    color: $colorCore;
+    background: $black;
+}
+
+:focus { outline: none; }
+
+/*#i {
+    animation: iBounce cubic-bezier(.01,.74,.51,1.29) 450ms 1 forwards;
+}
+
+@keyframes iBounce {
+    0% {
+        transform: translateY(-150%);
+    }
+    100% {
+        transform: translateY(0%);
+    }
+}*/
